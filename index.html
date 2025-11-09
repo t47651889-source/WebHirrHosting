@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HirrOfficial - Hosting Terbaik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(114, 9, 183, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(114, 9, 183, 0.6);
+        }
+
+        /* Stats Section */
+        .stats {
+            background-color: white;
+            padding: 60px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .product-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .category-btn {
+            background-color: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .product-body {
+            padding: 25px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-features li:last-child {
+            border-bottom: none;
+        }
+
+        .product-features i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        /* Payment Section */
+        .payment {
+            background-color: white;
+            padding: 80px 0;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .payment-method {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px);
+        }
+
+        .payment-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .payment-details {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3, .contact-form h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--success);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                width: 100%;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            .nav-menu.active {
+                display: block;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .product-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-server"></i>
+                    <h1>HirrOfficial</h1>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#payment">Pembayaran</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i> Keranjang</a></li>
+                        <li><a href="#"><i class="fas fa-user"></i> Profil</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Selamat Datang di Website HirrOfficial</h2>
+            <p>Sedia berbagai kebutuhan hosting terbaik dengan harga terjangkau dan kualitas premium. Dapatkan layanan hosting terpercaya dengan dukungan 24/7.</p>
+            <a href="#products" class="btn">Lihat Produk</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12.5K</div>
+                    <div class="stat-label">Total Terjual</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8.2K</div>
+                    <div class="stat-label">Pelanggan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Kepuasan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Produk Kami</h2>
+                <p>Berbagai pilihan layanan hosting berkualitas dengan harga terbaik</p>
+            </div>
+            
+            <div class="product-categories">
+                <button class="category-btn active" data-category="panel">Panel Pterodactyl</button>
+                <button class="category-btn" data-category="jasher">Jasher</button>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Panel Pterodactyl Products -->
+                <div class="product-card" data-category="panel">
+                    <div class="product-header">
+                        <div class="product-name">1GB RAM</div>
+                        <div class="product-price">Rp 1.000</div>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> RAM 1GB</li>
+                            <li><i class="fas fa-check"></i> CPU 1 Core</li>
+                            <li><i class="fas fa-check"></i> Storage 10GB</li>
+                            <li><i class="fas fa-check"></i> Bandwidth Unlimited</li>
+                        </ul>
+                        <a href="#" class="btn" style="width: 100%; text-align: center;">Beli Sekarang</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="panel">
+                    <div class="product-header">
+                        <div class="product-name">2GB RAM</div>
+                        <div class="product-price">Rp 2.000</div>
+                    </div>
+                    <div class="product-body">
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> RAM 2GB</li>
+                            <li><i class="fas fa-check"></i> CPU 2 Core</li>
+                            <li><i class="fas fa-check"></i> Storage 20GB</li>
+                            <li
